@@ -7,6 +7,9 @@ import com.bank.balance.infrastructure.persistence.entity.TransactionEntity;
 import com.bank.balance.infrastructure.persistence.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 public class TransactionRepositoryGateway implements TransactionGateway {
 
@@ -32,5 +35,11 @@ public class TransactionRepositoryGateway implements TransactionGateway {
         TransactionEntity entity = transactionRepository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Notfound transaction = " + id));
         return transactionEntityMapper.toDomain(entity);
+    }
+
+    @Override
+    public List<Transaction> findByTimestampBetween(LocalDateTime startDate, LocalDateTime endDate) {
+        List<TransactionEntity> list = transactionRepository.findByTimestampBetween(startDate, endDate);
+        return transactionEntityMapper.toDomain(list);
     }
 }

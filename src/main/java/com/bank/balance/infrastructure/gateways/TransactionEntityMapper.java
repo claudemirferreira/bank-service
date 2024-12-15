@@ -6,7 +6,9 @@ import com.bank.balance.infrastructure.persistence.entity.TransactionEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionEntityMapper {
@@ -36,6 +38,12 @@ public class TransactionEntityMapper {
 
     Transaction toDomain(TransactionEntity entity) {
         return modelMapper.map(entity, Transaction.class);
+    }
+
+    public List<Transaction> toDomain(List<TransactionEntity> entities) {
+        return entities.stream()
+                .map(this::toDomain)
+                .collect(Collectors.toList());
     }
 
 }
