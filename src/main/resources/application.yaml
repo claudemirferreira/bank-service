@@ -1,0 +1,38 @@
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
+
+lombok:
+  addGeneratedAnnotation: 'true'
+  configurationCheck: 'true'
+spring:
+  datasource:
+    username: root
+    url: jdbc:postgresql://localhost:5432/account
+    password: root
+  jpa:
+    database: POSTGRESQL
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+  application:
+    name: balance-service
+  database:
+    driverClassName: org.postgresql.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics,health,info,env
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    endpoint:
+      prometheus:
+        enabled: true
+

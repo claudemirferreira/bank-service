@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15      # Especifique a versão do PostgreSQL
+    container_name: postgres_container
+    restart: always          # Reinicia o contêiner automaticamente
+    environment:
+      POSTGRES_USER: root   # Usuário do PostgreSQL
+      POSTGRES_PASSWORD: root   # Senha do PostgreSQL
+      POSTGRES_DB: account      # Banco de dados inicial
+    ports:
+      - "5432:5432"          # Mapeia a porta local para a porta do contêiner
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Volume para persistência de dados
+
+volumes:
+  postgres_data:
+    driver: local
