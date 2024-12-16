@@ -39,7 +39,7 @@ public class TransferFundsUseCaseImpl implements TransferFundsUseCase {
         destinationAccount.setBalance(destinationAccount.getBalance().add(transaction.getAmount()));
         this.accountGateway.save(destinationAccount);
 
-        destinationAccount.setBalance(sourceAccount.getBalance().subtract(transaction.getAmount()));
+        sourceAccount.setBalance(sourceAccount.getBalance().subtract(transaction.getAmount()));
         this.accountGateway.save(destinationAccount);
 
         var transactionCredit = transactionGateway.depositFunds(
