@@ -27,7 +27,7 @@ public class TransactionEntity {
     @JoinColumn(name = "source_account_id")
     private AccountEntity sourceAccount;
 
-    @ManyToOne( fetch = FetchType.EAGER)
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_account_id", referencedColumnName = "account_id", nullable = false)
     private AccountEntity destinationAccount;
 
@@ -36,7 +36,7 @@ public class TransactionEntity {
 
     @Builder.Default
     @Column(nullable = false)
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime operationDate = LocalDateTime.now();
 
     private String description;
 

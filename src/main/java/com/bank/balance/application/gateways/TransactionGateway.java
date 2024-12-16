@@ -2,7 +2,7 @@ package com.bank.balance.application.gateways;
 
 import com.bank.balance.domain.Transaction;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TransactionGateway {
@@ -11,6 +11,6 @@ public interface TransactionGateway {
 
     Transaction findById(Long id);
 
-    List<Transaction> findByTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
+    List<Transaction> getTransactions(Long sourceAccountId, LocalDate startDate, LocalDate endDate);
 
 }

@@ -18,5 +18,5 @@ public class DepositFundsResponse {
     private BigDecimal balance;
     private BigDecimal amount;
     private String description;
-    private LocalDateTime timestamp;
+    private LocalDateTime operationDate;
 }

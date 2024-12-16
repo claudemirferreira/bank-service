@@ -1,6 +1,5 @@
-package com.bank.balance.domain;
+package com.bank.balance.infrastructure.controller.dto.retrievehistoricalbalance;
 
-import com.bank.balance.domain.enumarations.OperationTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,13 +12,12 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transaction {
+public class RetrieveHistoricalBalanceReponse {
     private Long id;
-    private Account sourceAccount;
-    private Account destinationAccount;
     private BigDecimal amount;
     private LocalDateTime operationDate;
     private String description;
-    private OperationTypeEnum operationType;
+    private String operationType;
+    private SourceAccountReponse sourceAccount;
+    private DestinationAccountReponse destinationAccount;
 }
-

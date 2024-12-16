@@ -19,5 +19,5 @@ public class TransferFundsResponse {
     private String destinationHolderName;
     private BigDecimal amount;
     private String description;
-    private LocalDateTime timestamp;
+    private LocalDateTime operationDate;
 }
