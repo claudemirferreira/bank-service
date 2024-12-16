@@ -98,7 +98,7 @@ public class TransactionController {
             @RequestParam LocalDate startDate,
             @RequestParam LocalDate endDate) {
         var list = retrieveHistoricalBalanceUseCase.execute(sourceAccountId, startDate, endDate);
-        return transactionDtoMapper.toRetrieveHistoricalBalanceReponse(list);
+        return transactionDtoMapper.toRetrieveHistoricalBalanceReponseList(list);
     }
 
 }

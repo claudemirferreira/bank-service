@@ -44,6 +44,6 @@ public class TransactionRepositoryGateway implements TransactionGateway {
                 TransactionSpecification.byDestinationAccountAndPeriod(sourceAccountId, startDate, endDate),
                 Sort.by("operationDate").ascending()
         );
-        return transactionEntityMapper.toDomain(list);
+        return transactionEntityMapper.toDomainList(list);
     }
 }

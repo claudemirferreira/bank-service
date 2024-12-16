@@ -19,7 +19,7 @@ public class TransactionEntityMapper {
         this.modelMapper = modelMapper;
     }
 
-    TransactionEntity toEntity(Transaction transaction) {
+    public TransactionEntity toEntity(Transaction transaction) {
         return TransactionEntity
                 .builder()
                 .id(transaction.getId())
@@ -36,11 +36,11 @@ public class TransactionEntityMapper {
                 .build();
     }
 
-    Transaction toDomain(TransactionEntity entity) {
+    public Transaction toDomain(TransactionEntity entity) {
         return modelMapper.map(entity, Transaction.class);
     }
 
-    public List<Transaction> toDomain(List<TransactionEntity> entities) {
+    public List<Transaction> toDomainList(List<TransactionEntity> entities) {
         return entities.stream()
                 .map(this::toDomain)
                 .collect(Collectors.toList());

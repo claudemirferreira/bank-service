@@ -15,10 +15,12 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
-@Valid
+    @Valid
     private final CreateAccountUseCase createAccountUseCase;
     private final RetrieveBalanceUseCase retrieveBalanceUseCase;
     private final AccountDtoMapper accountDtoMapper;
@@ -40,10 +42,13 @@ public class AccountController {
                     content = @Content(mediaType = "application/json"))
     })
     @PostMapping
-    public AccountCreateResponse createAccount(@Valid @RequestBody AccountCreateRequest request) {
+    public ResponseEntity<AccountCreateResponse> createAccount(@Valid @RequestBody AccountCreateRequest request) {
         var account = accountDtoMapper.toAccount(request);
         var accountSaved = createAccountUseCase.execute(account);
-        return accountDtoMapper.toAccountCreateResponse(accountSaved);
+        return ResponseEntity
+                .created(URI.create("/accounts/" + accountSaved.getId() + "/balance")) // URL para o recurso criado
+                .body(accountDtoMapper.toAccountCreateResponse(accountSaved));
+
     }
 
     @Operation(summary = "Find balance account", description = "Find balance account with the provided details.")
@@ -57,7 +62,7 @@ public class AccountController {
     @GetMapping("/{accountNumber}/balance")
     public ResponseEntity<RetrieveBalanceResponse> getBalance(@PathVariable(value = "accountNumber", required = true) String accountNumber) {
         var account = retrieveBalanceUseCase.execute(accountNumber);
-        return ResponseEntity.ok( accountDtoMapper.toRetrieveBalanceResponse(account));
+        return ResponseEntity.ok(accountDtoMapper.toRetrieveBalanceResponse(account));
     }
 
 }

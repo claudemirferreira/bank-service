@@ -82,7 +82,7 @@ public class TransactionDtoMapper {
                 .build();
     }
 
-    public List<RetrieveHistoricalBalanceReponse> toRetrieveHistoricalBalanceReponse(List<Transaction> list) {
+    public List<RetrieveHistoricalBalanceReponse> toRetrieveHistoricalBalanceReponseList(List<Transaction> list) {
         return list.stream()
                 .map(this::toRetrieveHistoricalBalanceReponse)
                 .collect(Collectors.toList());

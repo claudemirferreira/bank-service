@@ -17,7 +17,7 @@ public class AccountEntityMapper {
         this.modelMapper = modelMapper;
     }
 
-    AccountEntity toEntity(Account account) {
+    public AccountEntity toEntity(Account account) {
         var entity = modelMapper.map(account, AccountEntity.class);
         if (Objects.isNull(entity.getBalance())) {
             entity.setBalance(new BigDecimal(0L));
@@ -25,9 +25,8 @@ public class AccountEntityMapper {
         return entity;
     }
 
-    Account toDomain(AccountEntity entity) {
+    public Account toDomain(AccountEntity entity) {
         return modelMapper.map(entity, Account.class);
-
     }
 
 }
